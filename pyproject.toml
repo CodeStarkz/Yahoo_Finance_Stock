@@ -1,0 +1,11 @@
+[project]
+name = "yahoo-finance-stock"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=3.0.5",
+    "scrapy>=2.18.0",
+    "selenium>=4.48.0",
+]

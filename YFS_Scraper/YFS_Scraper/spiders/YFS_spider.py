@@ -19,9 +19,9 @@ class YfsSpiderSpider(scrapy.Spider):
             item['change_percent'] = data_row.xpath('.//td[6]//span/text()').get()
             item['market_cap'] = data_row.xpath('.//td[7]//span/text()').get()
             item['volume'] = data_row.xpath('.//td[8]//span/text()').get()
-            item['volume_in_currency_24hrs'] = data_row.xpath('.//td[9]//span/text()').get()
-            item['total_volume_in_all_currency_in_24_hours'] = data_row.xpath('.//td[10]//span/text()').get()
-            item['circulating_supply'] = data_row.xpath('.//td[11]//span/text()').get()
+            item['volume_in_currency_24hrs'] = data_row.xpath('.//td[9]//text()').get()
+            item['total_volume_in_all_currency_in_24_hours'] = data_row.xpath('.//td[10]//text()').get()
+            item['circulating_supply'] = data_row.xpath('.//td[11]//text()').get()
             item['week_52_change'] = data_row.xpath('.//td[12]//span/text()').get()
             yield item
 

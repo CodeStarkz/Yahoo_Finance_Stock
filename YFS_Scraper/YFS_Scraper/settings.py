@@ -64,9 +64,7 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "YFS_Scraper.pipelines.YfsScraperPipeline": 300,
-#}
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -99,4 +97,16 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware': None,
     'YFS_Scraper.middlewares.UserAgentMiddleWare': 343,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 344,
+}
+
+ITEM_PIPELINES = {
+    "YFS_Scraper.pipelines.YfsScraperPipeline": 500,
+}
+
+FEEDS = {
+    'output.csv': {
+        'format': 'csv',
+        'encoding': 'utf-8',
+        'overwrite': True,  # Overwrite the file each time you run the spider
+    }
 }

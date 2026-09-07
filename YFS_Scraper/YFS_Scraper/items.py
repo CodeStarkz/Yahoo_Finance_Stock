@@ -22,3 +22,14 @@ class YfsScraperItem(scrapy.Item):
     circulating_supply=scrapy.Field()
     week_52_change=scrapy.Field()
     pass
+
+class coingeckoscrapItem(scrapy.Item):
+    # defining the items that we are going to be scraped from coin gecko websites
+    chains=scrapy.Field()
+    trend_in_24hrs=scrapy.Field()
+    trend_in_7_days=scrapy.Field()
+    trend_in_30_days=scrapy.Field()
+    volume_in_24_hrs=scrapy.Field()
+    total_volume = scrapy.Field()
+    dominance=scrapy.Field()
+    rank=scrapy.Field()

@@ -6,7 +6,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-from scrapy.settings.default_settings import DOWNLOADER_MIDDLEWARES
+from scrapy.settings.default_settings import DOWNLOADER_MIDDLEWARES, SCHEDULER_PRIORITY_QUEUE
 
 BOT_NAME = "YFS_Scraper"
 
@@ -110,3 +110,5 @@ FEEDS = {
         'overwrite': True,  # Overwrite the file each time you run the spider
     }
 }
+
+#SCHEDULER_PRIORITY_QUEUE=

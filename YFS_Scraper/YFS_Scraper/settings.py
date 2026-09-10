@@ -101,6 +101,8 @@ DOWNLOADER_MIDDLEWARES = {
 
 ITEM_PIPELINES = {
     "YFS_Scraper.pipelines.YfsScraperPipeline": 500,
+    "YFS_Scraper.pipelines.RedisDuplicatesPipeline": 600,
+
 }
 
 FEEDS = {
@@ -112,3 +114,6 @@ FEEDS = {
 }
 
 #SCHEDULER_PRIORITY_QUEUE=
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0

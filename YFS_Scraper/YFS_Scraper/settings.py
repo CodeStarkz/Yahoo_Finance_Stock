@@ -6,7 +6,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-from scrapy.settings.default_settings import DOWNLOADER_MIDDLEWARES, SCHEDULER_PRIORITY_QUEUE
+from datetime import datetime
 
 BOT_NAME = "YFS_Scraper"
 
@@ -17,10 +17,10 @@ ADDONS = {}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules
-#ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = False
 
 # Concurrency and throttling settings
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
@@ -39,10 +39,14 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-#    "Accept-Language": "en",
-#}
+DEFAULT_REQUEST_HEADERS = {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "https://www.coingecko.com/",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -95,7 +99,8 @@ DOWNLOAD_DELAY = 2
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware': None,
-    'YFS_Scraper.middlewares.UserAgentMiddleWare': 343,
+    # 'YFS_Scraper.middlewares.UserAgentMiddleWare': 343,
+    'YFS_Scraper.middlewares.SeleniumMiddleware': 343,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 344,
 }
 
@@ -104,9 +109,10 @@ ITEM_PIPELINES = {
     "YFS_Scraper.pipelines.RedisDuplicatesPipeline": 600,
 
 }
-
+current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+outfile = f"YFS_Scraper_output_{current_time}.csv"
 FEEDS = {
-    'output.csv': {
+    f'/Users/abhisheksingh/Desktop/Yahoo_Finance_Stock/YFS_Scraper/scraped_output_storage_area/{outfile}': {
         'format': 'csv',
         'encoding': 'utf-8',
         'overwrite': True,  # Overwrite the file each time you run the spider

@@ -7,6 +7,7 @@ import redis
 from scrapy.exceptions import DropItem
 from itemadapter import ItemAdapter
 
+
 class YfsScraperPipeline:
     def process_item(self, item, spider):
         adapter = ItemAdapter(item)

@@ -107,7 +107,6 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
     "YFS_Scraper.pipelines.YfsScraperPipeline": 500,
     "YFS_Scraper.pipelines.RedisDuplicatesPipeline": 600,
-
 }
 current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
 outfile = f"YFS_Scraper_output_{current_time}.csv"

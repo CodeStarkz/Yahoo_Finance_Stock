@@ -4,6 +4,15 @@ from ..items import YfsScraperItem
 
 class YfsSpiderSpider(scrapy.Spider):
     name = "YFS_spider"
+    custom_settings = {
+        'FEEDS': {
+            '/Users/abhisheksingh/Desktop/Yahoo_Finance_Stock/YFS_Scraper/scraped_output_storage_area/YFS_spider_Scraper_output_%(time)s.csv': {
+                'format': 'csv',
+                'encoding': 'utf-8',
+                'overwrite': True,
+            }
+        }
+    }
     allowed_domains = ["finance.yahoo.com"]
     start_urls = ["https://finance.yahoo.com/markets/crypto/all/?guccounter=1"]
 

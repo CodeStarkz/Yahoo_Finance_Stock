@@ -33,3 +33,12 @@ class coingeckoscrapItem(scrapy.Item):
     total_volume = scrapy.Field()
     dominance=scrapy.Field()
     rank=scrapy.Field()
+
+class fobesItem(scrapy.Item):
+    name = scrapy.Field()
+    price=scrapy.Field()
+    in_last_1_hour=scrapy.Field()
+    in_last_24_hours=scrapy.Field()
+    in_last_7_days=scrapy.Field()
+    Market_cap=scrapy.Field()
+    volume_24h=scrapy.Field()

@@ -7,7 +7,8 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 from datetime import datetime
-
+import os
+from .pipelines import UnifiedScraperPipeline
 BOT_NAME = "YFS_Scraper"
 
 SPIDER_MODULES = ["YFS_Scraper.spiders"]
@@ -48,6 +49,7 @@ DEFAULT_REQUEST_HEADERS = {
     "Upgrade-Insecure-Requests": "1",
 }
 
+
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
@@ -68,6 +70,10 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+
+ITEM_PIPELINES={
+    'YFS_Scraper.pipelines.UnifiedScraperPipeline': 500,
+}
 
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -99,26 +105,9 @@ DOWNLOAD_DELAY = 2
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware': None,
-    # 'YFS_Scraper.middlewares.UserAgentMiddleWare': 343,
-    'YFS_Scraper.middlewares.SeleniumMiddleware': 343,
+#     'YFS_Scraper.middlewares.UserAgentMiddleWare': 343,
+ #    'YFS_Scraper.middlewares.SeleniumMiddleware': 343,
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 344,
 }
 
-ITEM_PIPELINES = {
-    "YFS_Scraper.pipelines.YfsScraperPipeline": 500,
-    "YFS_Scraper.pipelines.RedisDuplicatesPipeline": 600,
-}
-current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-outfile = f"YFS_Scraper_output_{current_time}.csv"
-FEEDS = {
-    f'/Users/abhisheksingh/Desktop/Yahoo_Finance_Stock/YFS_Scraper/scraped_output_storage_area/{outfile}': {
-        'format': 'csv',
-        'encoding': 'utf-8',
-        'overwrite': True,  # Overwrite the file each time you run the spider
-    }
-}
-
-#SCHEDULER_PRIORITY_QUEUE=
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 0
+# Removed dynamic FEEDS configuration to be handled by individual spiders via custom_settings

@@ -36,7 +36,7 @@ class ProxyMiddleWare:
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 from scrapy.http import HtmlResponse
 import time
 
@@ -46,7 +46,7 @@ class SeleniumMiddleware:
         options = webdriver.ChromeOptions()
         options.add_argument("--headless")
         options.add_argument("--disable-blink-features=AutomationControlled")
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        self.driver = webdriver.Chrome(service=Service('/usr/local/bin/chromedriver'), options=options)
         print("DEBUG: SeleniumMiddleware initialized.")
 
     @classmethod

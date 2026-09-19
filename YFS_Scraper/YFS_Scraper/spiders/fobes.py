@@ -37,7 +37,7 @@ class FobesSpider(scrapy.Spider):
             data = json.loads(next_data_script)
             build_id = data['buildId']
             
-            for page in range(2, 5):
+            for page in range(2, 50):
                 end_point_url = f"https://www.forbes.com/digital-assets/_next/data/{build_id}/crypto-prices.json?page={page}"
                 yield scrapy.Request(url=end_point_url, callback=self.parse_json)
 

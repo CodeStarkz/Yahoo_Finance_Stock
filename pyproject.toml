@@ -9,4 +9,5 @@ dependencies = [
     "redis>=8.1.0",
     "scrapy>=2.18.0",
     "selenium>=4.48.0",
+    "webdriver-manager",
 ]

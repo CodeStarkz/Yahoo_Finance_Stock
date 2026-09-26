@@ -1,0 +1,10 @@
+2026-09-26T11:35:09.184645Z [info     ] Starting log server on http://[::]:8794 [airflow.utils.serve_logs.core] loc=core.py:50
+2026-09-26T11:35:09.294019Z [warning  ] ASGI app factory detected. Using it, but please consider setting the --factory flag explicitly. [uvicorn.error] loc=config.py:521
+2026-09-26T11:35:09.294509Z [info     ] Started server process [86212] [uvicorn.error] loc=server.py:103
+2026-09-26T11:35:09.294657Z [info     ] Waiting for application startup. [uvicorn.error] loc=on.py:48
+2026-09-26T11:35:09.295154Z [info     ] Application startup complete.  [uvicorn.error] loc=on.py:62
+2026-09-26T11:35:09.297513Z [info     ] Uvicorn running on http://:8794 (Press CTRL+C to quit) [uvicorn.error] loc=server.py:234
+2026-09-26T11:35:16.588286Z [info     ] Shutting down                  [uvicorn.error] loc=server.py:282
+2026-09-26T11:35:16.689474Z [info     ] Waiting for application shutdown. [uvicorn.error] loc=on.py:67
+2026-09-26T11:35:16.690265Z [info     ] Application shutdown complete. [uvicorn.error] loc=on.py:76
+2026-09-26T11:35:16.690620Z [info     ] Finished server process [86212] [uvicorn.error] loc=server.py:113

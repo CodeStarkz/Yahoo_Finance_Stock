@@ -1,0 +1,9 @@
+[2m2026-09-26T11:34:53.055072Z[0m [[32m[1minfo     [0m] [1mLoaded executor: :LocalExecutor:[0m [[0m[1m[34mairflow.executors.executor_loader[0m][0m [36mloc[0m=[35mexecutor_loader.py:376[0m
+2026-09-26T11:34:58.623927Z [info     ] Starting log server on http://[::]:8793 [airflow.utils.serve_logs.core] loc=core.py:50
+2026-09-26T11:34:58.727988Z [warning  ] ASGI app factory detected. Using it, but please consider setting the --factory flag explicitly. [uvicorn.error] loc=config.py:521
+2026-09-26T11:34:58.728462Z [info     ] Started server process [86198] [uvicorn.error] loc=server.py:103
+2026-09-26T11:34:58.728630Z [info     ] Waiting for application startup. [uvicorn.error] loc=on.py:48
+2026-09-26T11:34:58.728988Z [info     ] Application startup complete.  [uvicorn.error] loc=on.py:62
+2026-09-26T11:34:58.731702Z [error    ] [Errno 48] error while attempting to bind on address ('::', 8793, 0, 0): address already in use [uvicorn.error] loc=server.py:190
+2026-09-26T11:34:58.731908Z [info     ] Waiting for application shutdown. [uvicorn.error] loc=on.py:67
+2026-09-26T11:34:58.732190Z [info     ] Application shutdown complete. [uvicorn.error] loc=on.py:76

@@ -59,6 +59,12 @@ default_args = {
     is_paused_upon_creation=True
 )
 def dag_to_trigger_scrappers():
+    """
+    this pipeline is used to run the scrappers(by tis moment we have two scrapper,\
+     with the help of this dag we will trigger both of them paralelly )
+
+    :return:
+    """
 
     # We define the directory as a standard Python variable or template
     SCRAPER_DIR = "/Users/abhisheksingh/Desktop/Yahoo_Finance_Stock/YFS_Scraper/YFS_Scraper"

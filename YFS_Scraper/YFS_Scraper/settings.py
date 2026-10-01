@@ -37,7 +37,7 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 #COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
-#TELNETCONSOLE_ENABLED = False
+TELNETCONSOLE_ENABLED = True  # similar like python console but dedicately scrapy
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {

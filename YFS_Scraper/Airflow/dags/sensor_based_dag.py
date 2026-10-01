@@ -3,23 +3,22 @@ from pendulum import datetime
 from datetime import timedelta
 from airflow.sensors.external_task import ExternalTaskSensor
 
-from YFS_Scraper.Airflow.dags.orchestration_plan1 import default_args
-
-default_args = {
-    "retries": 3,
-    "retry_delay": timedelta(minutes=5),
-}
+from orchestration_plan1 import default_args
 @dag(
     dag_id="transform_and_ingestion",
     default_args=default_args,
     schedule="@daily",
     start_date=datetime(2026,1,1),
     catchup=False,
-    paused_upon_creation=True
+    is_paused_upon_creation=False
 )
 def transform_and_ingestion():
-    event_completeion=ExternalTaskSensor(
-        task_id="trigger_scraper_YFS",
+
+    wait_for_scraper_YFS = ExternalTaskSensor(
+        task_id="wait_for_scraper_YFS",
+        external_dag_id="dag_to_trigger_scrappers",
+        external_task_id="trigger_scraper_YFS",
+        mode="reschedule",
         timeout=600
     )
 
@@ -36,7 +35,6 @@ def transform_and_ingestion():
     insertion_into_db=insertion_into_db()
 
     # setting order
-    transformation >> insertion_into_db
+    wait_for_scraper_YFS >> transformation >> insertion_into_db
 
 transform_and_ingestion()
-

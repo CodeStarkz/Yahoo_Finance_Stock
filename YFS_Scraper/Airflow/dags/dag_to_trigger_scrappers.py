@@ -53,8 +53,8 @@ default_args = {
 @dag(
     dag_id="dag_to_trigger_scrappers",
     default_args=default_args,
-    schedule="@daily",
-    start_date=datetime(2026, 1, 1), # Added required start_date
+    schedule=timedelta(minutes=30),
+    start_date=datetime(2026, 1, 1),
     catchup=False,
     is_paused_upon_creation=True
 )
@@ -66,10 +66,8 @@ def dag_to_trigger_scrappers():
     :return:
     """
 
-    # We define the directory as a standard Python variable or template
     SCRAPER_DIR = "/Users/abhisheksingh/Desktop/Yahoo_Finance_Stock/YFS_Scraper/YFS_Scraper"
 
-    # Using standard bash syntax to chain the CD and the run command together
     @task.bash(task_id="trigger_scraper_YFS")
     def trigger_scraper_YFS():
         return f"cd {SCRAPER_DIR} && scrapy crawl YFS_spider"
@@ -78,13 +76,21 @@ def dag_to_trigger_scrappers():
     def trigger_scraper_fobes():
         return f"cd {SCRAPER_DIR} && scrapy crawl fobes"
 
-    # Initiating the task
-    trigger_scraper_YFS= trigger_scraper_YFS()
-    trigger_scraper_fobes = trigger_scraper_fobes()
+    @task.python(task_id="transformations") # Fixed: Converted to an Airflow task
+    def transformation():
+        pass
 
-    # Dependencies
-    [trigger_scraper_YFS,trigger_scraper_fobes]
+    @task.python(task_id="insertion_into_db")
+    def insertion_into_db():
+        pass
 
+    # Initiating the tasks
+    t_scraper_YFS = trigger_scraper_YFS()
+    t_scraper_fobes = trigger_scraper_fobes()
+    t_transformation = transformation()
+    t_insertion = insertion_into_db()
 
+    # Dependencies (Fixed: Connected scrapers directly to transformation)
+    [t_scraper_YFS, t_scraper_fobes] >> t_transformation >> t_insertion
 
 dag_to_trigger_scrappers()
